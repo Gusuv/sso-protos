@@ -1,1 +1,19 @@
-syntax = "proto3"
+syntax = "proto3";
+
+package sso;
+
+option go_package = "https://github.com/Gusuv/sso-protos";
+
+service Auth {
+    rpc Login(LoginReq) returns (loginResp);
+    rpc Register(RegisterReq) returns (RegisterResp);
+}
+
+message LoginReq {
+    string email = 1;
+    string password = 2;
+}
+
+message loginResp {
+    string token = 1;
+}
