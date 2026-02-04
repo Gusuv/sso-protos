@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-//version 0.0.3
+//version 0.0.4
 
 package sso;
 
-option go_package = "https://github.com/Gusuv/sso-protos";
+option go_package = "Gusuv/sso-protos";
 
 service Auth {
   rpc Login(LoginReq) returns (loginResp);
