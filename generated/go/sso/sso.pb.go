@@ -4,9 +4,9 @@
 // 	protoc        v6.33.4
 // source: sso/sso.proto
 
-//version 0.0.4
+//version 0.0.6
 
-package sso_protos
+package sso1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -438,7 +438,7 @@ const file_sso_sso_proto_rawDesc = "" +
 	"\bRegister\x12\x10.sso.RegisterReq\x1a\x11.sso.RegisterResp\x125\n" +
 	"\n" +
 	"AdminCheck\x12\x12.sso.AdminCheckReq\x1a\x13.sso.AdminCheckResp\x12)\n" +
-	"\x06Logout\x12\x0e.sso.LogoutReq\x1a\x0f.sso.LogoutRespB\x12Z\x10Gusuv/sso-protosb\x06proto3"
+	"\x06Logout\x12\x0e.sso.LogoutReq\x1a\x0f.sso.LogoutRespB\x17Z\x15Gusuv.sso.protos;sso1b\x06proto3"
 
 var (
 	file_sso_sso_proto_rawDescOnce sync.Once
