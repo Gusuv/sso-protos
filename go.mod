@@ -1,4 +1,4 @@
-module protos
+module github.com/Gusuv/sso-protos
 
 go 1.25.4
 
