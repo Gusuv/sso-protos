@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-//version 0.1
-
 package sso;
 
 option go_package = "Gusuv.sso.protos;sso1";
