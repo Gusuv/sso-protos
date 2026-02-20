@@ -4,7 +4,7 @@
 // - protoc             v6.33.4
 // source: sso/sso.proto
 
-//version 0.0.6
+//version 0.0.9
 
 package sso1
 
@@ -21,215 +21,215 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_Login_FullMethodName      = "/sso.Auth/Login"
-	Auth_Register_FullMethodName   = "/sso.Auth/Register"
-	Auth_AdminCheck_FullMethodName = "/sso.Auth/AdminCheck"
-	Auth_Logout_FullMethodName     = "/sso.Auth/Logout"
+	AuthService_Login_FullMethodName      = "/sso.AuthService/Login"
+	AuthService_Register_FullMethodName   = "/sso.AuthService/Register"
+	AuthService_AdminCheck_FullMethodName = "/sso.AuthService/AdminCheck"
+	AuthService_Logout_FullMethodName     = "/sso.AuthService/Logout"
 )
 
-// AuthClient is the client API for Auth service.
+// AuthServiceClient is the client API for AuthService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type AuthClient interface {
-	Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginResp, error)
-	Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error)
-	AdminCheck(ctx context.Context, in *AdminCheckReq, opts ...grpc.CallOption) (*AdminCheckResp, error)
-	Logout(ctx context.Context, in *LogoutReq, opts ...grpc.CallOption) (*LogoutResp, error)
+type AuthServiceClient interface {
+	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
+	AdminCheck(ctx context.Context, in *AdminCheckRequest, opts ...grpc.CallOption) (*AdminCheckResponse, error)
+	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
 }
 
-type authClient struct {
+type authServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewAuthClient(cc grpc.ClientConnInterface) AuthClient {
-	return &authClient{cc}
+func NewAuthServiceClient(cc grpc.ClientConnInterface) AuthServiceClient {
+	return &authServiceClient{cc}
 }
 
-func (c *authClient) Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginResp, error) {
+func (c *authServiceClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(LoginResp)
-	err := c.cc.Invoke(ctx, Auth_Login_FullMethodName, in, out, cOpts...)
+	out := new(LoginResponse)
+	err := c.cc.Invoke(ctx, AuthService_Login_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authClient) Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error) {
+func (c *authServiceClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RegisterResp)
-	err := c.cc.Invoke(ctx, Auth_Register_FullMethodName, in, out, cOpts...)
+	out := new(RegisterResponse)
+	err := c.cc.Invoke(ctx, AuthService_Register_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authClient) AdminCheck(ctx context.Context, in *AdminCheckReq, opts ...grpc.CallOption) (*AdminCheckResp, error) {
+func (c *authServiceClient) AdminCheck(ctx context.Context, in *AdminCheckRequest, opts ...grpc.CallOption) (*AdminCheckResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AdminCheckResp)
-	err := c.cc.Invoke(ctx, Auth_AdminCheck_FullMethodName, in, out, cOpts...)
+	out := new(AdminCheckResponse)
+	err := c.cc.Invoke(ctx, AuthService_AdminCheck_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authClient) Logout(ctx context.Context, in *LogoutReq, opts ...grpc.CallOption) (*LogoutResp, error) {
+func (c *authServiceClient) Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(LogoutResp)
-	err := c.cc.Invoke(ctx, Auth_Logout_FullMethodName, in, out, cOpts...)
+	out := new(LogoutResponse)
+	err := c.cc.Invoke(ctx, AuthService_Logout_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// AuthServer is the server API for Auth service.
-// All implementations must embed UnimplementedAuthServer
+// AuthServiceServer is the server API for AuthService service.
+// All implementations must embed UnimplementedAuthServiceServer
 // for forward compatibility.
-type AuthServer interface {
-	Login(context.Context, *LoginReq) (*LoginResp, error)
-	Register(context.Context, *RegisterReq) (*RegisterResp, error)
-	AdminCheck(context.Context, *AdminCheckReq) (*AdminCheckResp, error)
-	Logout(context.Context, *LogoutReq) (*LogoutResp, error)
-	mustEmbedUnimplementedAuthServer()
+type AuthServiceServer interface {
+	Login(context.Context, *LoginRequest) (*LoginResponse, error)
+	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
+	AdminCheck(context.Context, *AdminCheckRequest) (*AdminCheckResponse, error)
+	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
+	mustEmbedUnimplementedAuthServiceServer()
 }
 
-// UnimplementedAuthServer must be embedded to have
+// UnimplementedAuthServiceServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedAuthServer struct{}
+type UnimplementedAuthServiceServer struct{}
 
-func (UnimplementedAuthServer) Login(context.Context, *LoginReq) (*LoginResp, error) {
+func (UnimplementedAuthServiceServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Login not implemented")
 }
-func (UnimplementedAuthServer) Register(context.Context, *RegisterReq) (*RegisterResp, error) {
+func (UnimplementedAuthServiceServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Register not implemented")
 }
-func (UnimplementedAuthServer) AdminCheck(context.Context, *AdminCheckReq) (*AdminCheckResp, error) {
+func (UnimplementedAuthServiceServer) AdminCheck(context.Context, *AdminCheckRequest) (*AdminCheckResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method AdminCheck not implemented")
 }
-func (UnimplementedAuthServer) Logout(context.Context, *LogoutReq) (*LogoutResp, error) {
+func (UnimplementedAuthServiceServer) Logout(context.Context, *LogoutRequest) (*LogoutResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Logout not implemented")
 }
-func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
-func (UnimplementedAuthServer) testEmbeddedByValue()              {}
+func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
+func (UnimplementedAuthServiceServer) testEmbeddedByValue()                     {}
 
-// UnsafeAuthServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to AuthServer will
+// UnsafeAuthServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AuthServiceServer will
 // result in compilation errors.
-type UnsafeAuthServer interface {
-	mustEmbedUnimplementedAuthServer()
+type UnsafeAuthServiceServer interface {
+	mustEmbedUnimplementedAuthServiceServer()
 }
 
-func RegisterAuthServer(s grpc.ServiceRegistrar, srv AuthServer) {
-	// If the following call panics, it indicates UnimplementedAuthServer was
+func RegisterAuthServiceServer(s grpc.ServiceRegistrar, srv AuthServiceServer) {
+	// If the following call panics, it indicates UnimplementedAuthServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Auth_ServiceDesc, srv)
+	s.RegisterService(&AuthService_ServiceDesc, srv)
 }
 
-func _Auth_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LoginReq)
+func _AuthService_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).Login(ctx, in)
+		return srv.(AuthServiceServer).Login(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_Login_FullMethodName,
+		FullMethod: AuthService_Login_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).Login(ctx, req.(*LoginReq))
+		return srv.(AuthServiceServer).Login(ctx, req.(*LoginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_Register_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RegisterReq)
+func _AuthService_Register_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).Register(ctx, in)
+		return srv.(AuthServiceServer).Register(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_Register_FullMethodName,
+		FullMethod: AuthService_Register_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).Register(ctx, req.(*RegisterReq))
+		return srv.(AuthServiceServer).Register(ctx, req.(*RegisterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_AdminCheck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AdminCheckReq)
+func _AuthService_AdminCheck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminCheckRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).AdminCheck(ctx, in)
+		return srv.(AuthServiceServer).AdminCheck(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_AdminCheck_FullMethodName,
+		FullMethod: AuthService_AdminCheck_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).AdminCheck(ctx, req.(*AdminCheckReq))
+		return srv.(AuthServiceServer).AdminCheck(ctx, req.(*AdminCheckRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_Logout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LogoutReq)
+func _AuthService_Logout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LogoutRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).Logout(ctx, in)
+		return srv.(AuthServiceServer).Logout(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_Logout_FullMethodName,
+		FullMethod: AuthService_Logout_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).Logout(ctx, req.(*LogoutReq))
+		return srv.(AuthServiceServer).Logout(ctx, req.(*LogoutRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
+// AuthService_ServiceDesc is the grpc.ServiceDesc for AuthService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Auth_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "sso.Auth",
-	HandlerType: (*AuthServer)(nil),
+var AuthService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "sso.AuthService",
+	HandlerType: (*AuthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Login",
-			Handler:    _Auth_Login_Handler,
+			Handler:    _AuthService_Login_Handler,
 		},
 		{
 			MethodName: "Register",
-			Handler:    _Auth_Register_Handler,
+			Handler:    _AuthService_Register_Handler,
 		},
 		{
 			MethodName: "AdminCheck",
-			Handler:    _Auth_AdminCheck_Handler,
+			Handler:    _AuthService_AdminCheck_Handler,
 		},
 		{
 			MethodName: "Logout",
-			Handler:    _Auth_Logout_Handler,
+			Handler:    _AuthService_Logout_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

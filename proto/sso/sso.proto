@@ -1,50 +1,53 @@
 syntax = "proto3";
 
-//version 0.0.8
+//version 0.1
 
 package sso;
 
 option go_package = "Gusuv.sso.protos;sso1";
 
-service Auth {
-  rpc Login(LoginReq) returns (loginResp);
-  rpc Register(RegisterReq) returns (RegisterResp);
-  rpc AdminCheck(AdminCheckReq) returns (AdminCheckResp);
-  rpc Logout(LogoutReq) returns (LogoutResp);
+service AuthService {
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc AdminCheck(AdminCheckRequest) returns (AdminCheckResponse);
+  rpc Logout(LogoutRequest) returns (LogoutResponse);
 }
 
-message LoginReq {
-  string username = 1;
+message LoginRequest {
+  string email = 1;
   string password = 2;
-  int32 app_id = 3;
+  int64 app_id = 3;
 }
 
-message loginResp {
-  string token = 1;
+message LoginResponse {
+  string access_token = 1;
+  string refresh_token = 2;
+  int64 user_id = 3;
+  int64 expires_at = 4;
 }
 
-message RegisterReq {
+message RegisterRequest {
   string username = 1;
   string email = 2;
   string password = 3;
 }
 
-message RegisterResp {
+message RegisterResponse {
+  bool success = 1;
+}
+
+message LogoutRequest {
+  string refresh_token = 1;
+}
+
+message LogoutResponse {
   string message = 1;
 }
 
-message LogoutReq {
-  string token = 1;
+message AdminCheckRequest {
+  string access_token = 1;
 }
 
-message LogoutResp {
-  string message = 1;
-}
-
-message AdminCheckReq {
-  int64 user_id = 1;
-}
-
-message AdminCheckResp {
+message AdminCheckResponse {
   bool is_admin = 1;
 }
