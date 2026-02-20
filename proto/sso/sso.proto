@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package sso;
 
-option go_package = "Gusuv.sso.protos;sso1";
+option go_package = "github.com/Gusuv/sso_protos";
 
 service AuthService {
   rpc Login(LoginRequest) returns (LoginResponse);
